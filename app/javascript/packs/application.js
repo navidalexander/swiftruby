@@ -9,7 +9,7 @@ import "channels"
 require("jquery")
 import '../packs/stylesheets/application'
 import 'materialize-css/dist/js/materialize'
-//= require materialize
+
 
 // Materialize Theme
 
