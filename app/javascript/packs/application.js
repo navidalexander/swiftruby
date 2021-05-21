@@ -8,7 +8,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 require("jquery")
 import '../packs/stylesheets/application'
-import 'materialize-css/dist/js/materialize'
+import 'materialize'
 
 // Materialize Theme
 
