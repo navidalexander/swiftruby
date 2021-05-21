@@ -1,0 +1,35 @@
+<div class="grey lighten-5" style="padding-top:100px; padding-bottom:100px;">
+  <div class="row">
+    <div class="col s12 m12 l2">
+    </div>
+    <div class="col s12 m12 l4">
+      <div class="card-panel z-depth-1">
+        <h3><small>Terms & Conditions</small></h3>
+        
+        <p class="flow-text" style="margin-bottom:39px;">
+          <small>Buy subscribing through the Checkout Button on this page, you are agreeing to the
+            following <a href="#">terms and conditions</a>. </small>
+        </p>
+        <form action="#">
+          <p>
+            <label>
+              <input type="checkbox" />
+              <span>Agree To Terms & Conditions</span>
+            </label>
+          </p>
+        </form>
+        <p><small>No Refunds After 14 Days</small></p>
+      </div>
+    </div>
+    <div class="col s12 m12 l4">
+      <div class="card-panel z-depth-1;">
+        <center>
+          <h2 style="font-family: 'Noto Sans', sans-serif;">Full Access</h2>
+          <%= render "credit_cards" %>
+          <a><%= render partial: "pay/stripe/checkout_button", locals: { session: @checkout_session, title: "Pay $28/mo", style: "padding: 15px 32px; border:none; color:white; background:#704fc4; border-radius:5px; cursor: pointer; margin-top:3px;", class: "z-depth-2" } %></a>
+        </center>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>

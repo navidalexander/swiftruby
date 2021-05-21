@@ -1,0 +1,64 @@
+<div class="row" style="margin:0px; padding:0px;">
+  <div class="col s12 m12 l12" style="margin:0px; padding:0px;">
+    <div class="">
+      <div class="row" style="margin:0px;">
+        <div class="col s12 m12 l4">
+          <div class="fixed-action-btn">
+            <a class="waves-effect waves-light btn modal-trigger btn-floating right red btn-large " href="#modal1" style="margin-top:35px; border-radius:1000px;">
+              <i class="material-icons">add</i>
+            </a>
+          </div>
+          <ul class="collection with-header" style="margin:0px; padding:0px;">
+            <li class="collection-header">
+              <h4><%= @course.name %>
+                <img style="height:40px; width:auto; margin-left:5px;" class="responsive-img right" src="<%= @course.course_image %>"></h4>
+            </li>
+            <% @course.lessons.order(lesson_number: 'ASC').each do |lesson| %>
+              <li class="collection-item">
+                <b><%= lesson.lesson_number %></b>) <%= link_to lesson.name, course_lesson_path(lesson.course, lesson) %>
+                <%= link_to 'Delete', [lesson.course, lesson],
+              method: :delete,
+              data: { confirm: "Are you sure?" }, class: "right" %></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="col s12 m12 l8">
+          <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/wK9NS_cu45s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h2>Add a Lesson:</h2>
+    <%= form_with model: [ @course, @course.lessons.build ] do |form| %>
+      <p>
+        <%= form.label :lesson_number %><br>
+        <%= form.text_field :lesson_number %>
+      </p>
+      <p>
+        <%= form.label :name %><br>
+        <%= form.text_field :name %>
+      </p>
+      <p>
+        <%= form.label :description %><br>
+        <%= form.text_area :description %>
+      </p>
+      <p>
+        <%= form.label :video_url %><br>
+        <%= form.text_field :video_url %>
+      </p>
+      <div class="field">
+        <%= form.label :notes %>
+        <%= form.rich_text_area :notes %>
+      </div>
+      <p>
+        <%= form.submit class: "btn red btn-small" %>
+      </p>
+    <% end %>
+  </div>
+</div>

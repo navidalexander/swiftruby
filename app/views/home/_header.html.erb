@@ -1,0 +1,69 @@
+<style>
+  button.header-button-1 {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  padding: 12px 24px !important;
+  border-radius: 5px;
+  background-color: transparent;
+  border: solid 3px #d1c2f7;
+  transition: 0.8s;
+  font-size: 16px;
+  
+    }
+button.header-button-1 a {
+  text-decoration: none;
+  color: white;
+    }
+  
+    button.header-button-1:hover{
+  cursor: pointer;
+  background-color:  white;
+  border: solid 3px white;
+  border-radius: 5px;
+  
+    }
+    button.header-button-1:hover a{
+     color: #555555;
+    }
+  
+    .header {
+  
+  background-image:
+  linear-gradient(to left, rgba(102, 51, 153, .1), rgba(140, 20, 252, .8), rgba(127,72, 238, 1)),
+  url('https://www.psdgraphics.com/wp-content/uploads/2009/05/purple-background.jpg');
+  
+  background-size: cover;
+  
+  color: white;
+  padding: 20px;
+  
+    }
+</style>
+
+<div class="header">
+
+  <!--Drop Down  -->
+  <ul id="dropdown1" class="dropdown-content">
+    <li><a href="/users/edit" class="black-text"><i class="material-icons">account_circle</i>Edit Profile</a></li>
+    <li><a href="/checkout" class="black-text"><i class="material-icons">credit_card</i>Subscribe</a></li>
+  </ul>
+    <%= render 'nav' %>
+  <div class="container" style="padding-bottom:60px;">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <h1 style="color: lavender; font-family: 'Noto Sans', sans-serif;">SwiftRuby</h1>
+        <h4 class="white-text"><b>Coding Tutorials 
+            <i><small>for Beginners</small></i></b>  <br>
+          <small><i>Learn to Code using Rails 6, PostgreSQL, Yarn & Webpack</i></small></h4>
+        <br>
+        <span><button class="header-button-1 z-depth-2"><a href="/courses" class="manual-optin-trigger">View Course</a></button></span>
+        <span style="margin-left:8px;">
+          <button class="header-button-1 z-depth-2">
+            <%= link_to checkout_path do %>
+              Full Access
+            <% end %>
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

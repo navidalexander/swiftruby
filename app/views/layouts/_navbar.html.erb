@@ -1,0 +1,91 @@
+<% unless controller.controller_name == "home" && controller.action_name == "index" %>
+  <!--Drop Down  -->
+  <ul id="dropdown1" class="dropdown-content">
+    <li><a href="/users/edit" class="black-text"><i class="material-icons">account_circle</i>Edit Profile</a></li>
+    <li><a href="/checkout" class="black-text"><i class="material-icons">credit_card</i>Subscribe</a></li>
+  </ul>
+  <nav style="background:transparent; height:105px; padding:20px; box-shadow:none;">
+    <div class="nav-wrapper">
+      <div class="container">
+        <a href="/" class="brand-logo" style="font-weight:900; color:black; font-family: 'Noto Sans', sans-serif;"><b>SwiftRuby</b></a>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <% if current_user %>
+            <li>
+              <%= image_tag current_user.gravatar_url, class: "circle responsive-img user" , style: "height:31px; width:auto; padding:2px; margin-top:18px;" %>
+            </li>
+            <!-- Dropdown Trigger -->
+            <li><a style="font-size:16px; color:black;" class="dropdown-trigger" href="#!" data-target="dropdown1"><b>Hi, <%= current_user.first_name %></b><i style="color:black;" class="material-icons right">arrow_drop_down</i></a></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "black-text" %></li>
+          <% else %>
+            <li><a href="/users/sign_in" class="black-text"><i class="material-icons left black-text">account_circle</i>Log In</a></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<% end %>
+<ul id="slide-out" class="sidenav grey lighten-3 white-text show-on-large">
+  <li>
+    <div class="user-view">
+      <div class="background grey lighten-5">
+      </div>
+      <% if current_user %>
+        <span class="chip right grey darken-2"><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "waves-effect right white-text" %></span>
+      <% else %>
+        <span class="chip right grey darken-2"> <a href="/users/sign_in" class="right white-text">Log In</a></span>
+      <% end %>
+      <% if current_user %>
+        <a href="/"><img class="circle" style="border: solid 2px grey;" src="<%= current_user.gravatar_url %>"></a>
+        <a href="#name"><span class="black-text name"><b>John Doe</b></span></a>
+        <a href="#email"><span class="black-text email"><%= current_user.email %></span></a>
+      <% else %>
+        <a href="/"><img class="circle" style="border: solid 2px grey;" src="https://swiftruby.com/sr_logo.png"></a>
+        <a href="#name"><span class="black-text name"><b>SwiftRuby Coding Camps</b></span></a>
+        <a href="#email"><span class="black-text email">support@swiftruby.com</span></a>
+      <% end %>
+    </div>
+  </li>
+  <li> <a href="/courses"><i class="material-icons">desktop_mac</i> View Course </a> </li>
+  <div class="divider"></div>
+  <ul class=" collapsible expandable">
+    <% Course.all.order(course_number: 'ASC').each do |course| %>
+      <li class="">
+        <div class="collapsible-header black-text">
+          <b><%= course.name %>  </b> <span style="border-radius:1000px;" class="badge icon white-text"><small><%= course.lessons.count %> Lessons</small></span>
+        </div>
+        <div class="collapsible-body"><span>
+            <ul class="collection">
+              <% course.lessons.each do |lesson|%>
+                <% if lesson == Lesson.all.where(:id => params[:id]).first %>
+                  <i class="material-icons white-text right" style="margin-top:10px; margin-right:10px;">play_circle_filled</i>
+                  <%= link_to lesson.name, course_lesson_path(lesson.course, lesson), class: "collection-item active icon" %>
+                <% else %>
+                  <%= link_to lesson.name, course_lesson_path(lesson.course, lesson), class: "collection-item black-text" %>
+                <% end %>
+              <% end %>
+            </ul>
+          </span></div>
+      </li>
+    <% end %>
+  </ul>
+  <li>
+    <div class="divider"></div>
+  </li>
+  <li><a class="subheader">Account</a></li>
+  <% if user_signed_in? %>
+    <li><a href="/users/edit"><i class="material-icons">account_circle</i> Edit Profile</a> </li>
+    <li><a href="/users/edit"><i class="material-icons">credit_card</i> Billing</a> </li>
+  <% else %>
+    <li> <a href="/users/sign_up"><i class="material-icons">account_circle</i> Sign Up</a> </li>
+  <% end %>
+</ul>
+<script>
+  $(document).ready(function(){
+      $('.sidenav').sidenav();
+  		$(".dropdown-trigger").dropdown({
+  			constrainWidth: false,
+  			coverTrigger: false
+  		});
+    })
+</script>

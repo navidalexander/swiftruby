@@ -1,0 +1,89 @@
+<style>
+  button.course-button-1{
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding: 10px 22px !important;
+    border-radius: 5px;
+    background-color: #704fc4;
+    border: none;
+    transition: 0.8s;
+    font-size: 16px;
+  }
+  
+  button.course-button-1 a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  button.course-button-1:hover{
+    cursor: pointer;
+    background-color: #b0b0b0;
+    border-radius: 5px;
+  
+  }
+  button.course-button-1:hover a{
+   color: white;
+  }
+</style>
+<div class="grey lighten-5">
+  <div class="container" style="padding-top:85px; padding-bottom:70px;">
+    <div class="row">
+      <div class="col s12 m5 l5">
+        <br>
+        <div class="card-panel z-depth-2" style="border-radius:5px;">
+          <h4 class="black-text">
+            <i class="class material-icons right small">
+              more_horiz
+            </i>
+            <div class="" style="background:white; padding-bottom:10px; padding-left:10px;">
+              <img style="height:45px; width: auto;" src="https://cdn4.iconfinder.com/data/icons/scripting-and-programming-languages/158/Ruby_on_Rails_2-512.png"><br>
+            </div>
+            <b style="  font-family: 'Noto Sans', sans-serif;">Ruby on Rails</b> <br>
+            <small style="">Foundations</small></h3>
+          <p style="font-size:18px; margin-bottom:30px;">Learn the foundations of Software Developing by creating
+            an MVC Application with Ruby on Rails.</p>
+          <div class="chip">
+            <img src="https://media-exp1.licdn.com/dms/image/C5603AQFFdoPK5Eaoyw/profile-displayphoto-shrink_100_100/0/1613946283186?e=1626912000&v=beta&t=Pn-07H5gK_SdaTUwBuipJ3TXcItzyimScOygwzBRHjk" alt="Contact Person">
+            by Navid Alexander
+          </div>
+          <div class="footer-text-cta" style="margin-top:20px;">
+            <p><button class="course-button-1 z-depth-2" style="border-radius:1000px;"><a href="/courses" class="manual-optin-trigger">Get S</a></button></p>
+            <br>
+          </div>
+        </div>
+        <br>
+      </div>
+      <div class="col s12 m7 l7">
+        <div class="card-panel" style="background:transparent; border:transparent; box-shadow:none;">
+          <h5 style="color:#704fc4;"><b>Curriculum</b></h5>
+          <div class="accordion">
+            <% Course.all.order(course_number: "ASC").each do |course| %>
+              <div class="accordion-item">
+                <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title" style="font-size:18px;"><%= course.name %></span><span class="icon" aria-hidden="true"></span></button>
+                <div class="accordion-content">
+                  <p style="font-size:18px;" ><%= course.description %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script>
+    const items = document.querySelectorAll(".accordion button");
+    
+    function toggleAccordion() {
+      const itemToggle = this.getAttribute('aria-expanded');
+    
+      for (i = 0; i < items.length; i++) {
+        items[i].setAttribute('aria-expanded', 'false');
+      }
+    
+      if (itemToggle == 'false') {
+        this.setAttribute('aria-expanded', 'true');
+      }
+    }
+    
+    items.forEach(item => item.addEventListener('click', toggleAccordion));
+  </script>

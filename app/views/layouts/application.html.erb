@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SwiftrubyV1</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="stripe-key" content="<%= ENV["public_key"] %>">
+    <%= javascript_include_tag 'https://js.stripe.com/v3/', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+  </head>
+
+  <body>
+  
+      <%= render 'layouts/navbar' %>
+      <% if notice %>
+        <span data-id="<%= notice %>" id="toast_notice"></span>
+      <% end %>
+      <% if alert %>
+        <span data-id="<%= alert %>" id="toast_alert"></span>
+      </div>
+    <% end %>
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+
+</body>
+</html>

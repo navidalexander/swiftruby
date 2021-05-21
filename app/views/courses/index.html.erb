@@ -1,0 +1,96 @@
+<div class="grey lighten-5">
+  <style>
+    button.course-button-1{
+      font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      padding: 10px 22px !important;
+      border-radius: 5px;
+      background-color: #704fc4;
+      border: none;
+      transition: 0.8s;
+      font-size: 16px;
+    }
+    
+    button.course-button-1 a {
+      text-decoration: none;
+      color: white;
+    }
+    
+    button.course-button-1:hover{
+      cursor: pointer;
+      background-color: #b0b0b0;
+      border-radius: 5px;
+    
+    }
+    button.course-button-1:hover a{
+     color: white;
+    }
+  </style>
+  <div class="grey lighten-5">
+    <div class="container" style="">
+      <div class="row">
+        <div class="col s12 m5 l5">
+          <div class="card-panel z-depth-2" style="border-radius:5px; margin-top:50px;">
+            <h4 class="black-text">
+              <i class="class material-icons right small">
+                more_horiz
+              </i>
+              <div class="" style="background:white; padding-bottom:10px; padding-left:10px;">
+                <img style="height:45px; width: auto;" src="https://cdn4.iconfinder.com/data/icons/scripting-and-programming-languages/158/Ruby_on_Rails_2-512.png"><br>
+              </div>
+              <b style="  font-family: 'Noto Sans', sans-serif;">Ruby on Rails</b> <br>
+              <small style="">Foundations</small></h3>
+            <p style="font-size:18px; margin-bottom:30px;">Learn the foundations of Software Developing by creating
+              an MVC Application with Ruby on Rails.</p>
+            <div class="chip">
+              <img src="https://media-exp1.licdn.com/dms/image/C5603AQFFdoPK5Eaoyw/profile-displayphoto-shrink_100_100/0/1613946283186?e=1626912000&v=beta&t=Pn-07H5gK_SdaTUwBuipJ3TXcItzyimScOygwzBRHjk" alt="Contact Person">
+              by Navid Alexander
+            </div>
+            <div class="footer-text-cta" style="margin-top:20px;">
+              <p><button class="course-button-1 z-depth-2" style="border-radius:1000px;"><a href="/courses" class="manual-optin-trigger">Register</a></button></p>
+              <br>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m12 l7">
+          <div class="card-panel z-depth-2" style="margin-top:50px;">
+             <% Course.all.order(course_number: 'ASC').each do |course| %>
+            <ul class="collection with-header" style="border:none;">
+              <li class="collection-header collection-item avatar">
+                <br>
+                <i class="material-icons circle icon"><%= course.course_icon %></i>
+                <span class="title" style="font-weight:900; font-size: 20px;"><b><%= course.name %></b></span>
+                <p style="font-weight:400; font-size: 14px;"><%= course.lessons.count %> Lessons</p>
+                <a href="#!" class="secondary-content"></a>
+                <br>
+              </li>
+              <% course.lessons.each do |lesson| %>
+                  <%= link_to(course_lesson_path(lesson.course, lesson), :class => 'collection-item') do %>
+                   <span class="secondary-content" style="font-size:12px; background:#704fc4; color:white; border-radius:5px; width:80px; text-align:center;">Lesson <%= lesson.lesson_number %></span>
+                   <span style="font-size:17px; color:black;"><%= lesson.name %></span>
+                  <% end %>
+              <% end %>
+            </ul>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= link_to "New Course", new_course_path %>
+  <script>
+    const items = document.querySelectorAll(".accordion button");
+    
+    function toggleAccordion() {
+      const itemToggle = this.getAttribute('aria-expanded');
+    
+      for (i = 0; i < items.length; i++) {
+        items[i].setAttribute('aria-expanded', 'false');
+      }
+    
+      if (itemToggle == 'false') {
+        this.setAttribute('aria-expanded', 'true');
+      }
+    }
+    
+    items.forEach(item => item.addEventListener('click', toggleAccordion));
+  </script>

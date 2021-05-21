@@ -1,0 +1,53 @@
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large purple darken-4 waves-effect waves-light modal-trigger tooltipped" data-position="left" data-tooltip="View Lessons" href="#modal1">
+    <i class="large material-icons">library_books</i>
+  </a>
+</div>
+<div class="grey lighten-5">
+  <div class="container" style="padding-top:20px; padding-bottom:50px;">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <div class="video-container" style="margin-top:10px;">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/wK9NS_cu45s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br>
+        <div class="card-panel white" style="margin-top:0px; border:none; box-shadow:none;">
+          <i class="material-icons red-text right" style="margin-top:20px;">favorite</i>
+          <h4><small><b>Lesson <%= @lesson.course.course_number %>.<%= @lesson.lesson_number %></b>: 
+              <%= @lesson.name %></small></h4>
+          <blockquote style="font-size:20px;"><%= @lesson.description %></blockquote>
+          <%= link_to 'Delete', [@lesson.course, @lesson],
+              method: :delete,
+              data: { confirm: "Are you sure?" }, class: "right" %>
+          <h6><%= @lesson.notes %></h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content white" style="padding:0px; margin:0px;">
+      <% Course.all.order(course_number: 'ASC').each do |course| %>
+        <ul class="collection with-header" style="margin-top:0px; padding-top:0px; border:none;">
+          <li class="collection-header collection-item" style="padding: 20px 20px;">
+            <span class="title" style="font-size:20px;"><b><%= course.name %></b></span>
+            <a href="#!" class="secondary-content"></a>
+          </li>
+          <% course.lessons.order(lesson_number: "ASC").each do |lesson| %>
+            <% if lesson.id === Lesson.all.where(:id => params[:id]).first.id.to_f %>
+              <i class="material-icons icon-color right" style="margin-top:10px; margin-right:10px;">play_circle_filled</i>
+              <%= link_to(course_lesson_path(lesson.course, lesson), class: "collection-item grey icon-color lighten-2 black-text") do %>
+                <b>Lesson <%= lesson.lesson_number %>:</b> <%= lesson.name %>
+              <% end %>
+            <% else %>
+              <%= link_to(course_lesson_path(lesson.course, lesson), class: "collection-item icon-color lighten-2 black-text") do %>
+                <b>Lesson <%= lesson.course.id %>.<%= lesson.lesson_number %>:</b> <%= lesson.name %>
+              <% end %>            <% end %>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
