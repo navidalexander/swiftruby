@@ -15,7 +15,7 @@
               <%= image_tag current_user.gravatar_url, class: "circle responsive-img user" , style: "height:31px; width:auto; padding:2px; margin-top:18px;" %>
             </li>
             <!-- Dropdown Trigger -->
-            <li><a style="font-size:16px; color:black;" class="dropdown-trigger" href="#!" data-target="dropdown1"><b>Hi, <%= current_user.first_name %></b><i style="color:black;" class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a style="font-size:16px; color:black;" class="dropdown-trigger" href="#!" data-target="dropdown1">Hi, <%= current_user.first_name %><i style="color:black;" class="material-icons right">arrow_drop_down</i></a></li>
             <li><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "black-text" %></li>
           <% else %>
             <li><a href="/users/sign_in" class="black-text"><i class="material-icons left black-text">account_circle</i>Log In</a></li>
