@@ -56,7 +56,7 @@
         <div class="card-panel" style="background:transparent; border:transparent; box-shadow:none;">
           <h5 style="color:#704fc4;"><b>Curriculum</b></h5>
           <div class="accordion">
-            <% Course.all.order(course_number: "ASC").each do |course| %>
+            <% Course.all.order(created_at: "ASC").each do |course| %>
               <div class="accordion-item">
                 <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title" style="font-size:18px;"><%= course.name %></span><span class="icon" aria-hidden="true"></span></button>
                 <div class="accordion-content">

@@ -49,7 +49,7 @@
   <li> <a href="/courses"><i class="material-icons">desktop_mac</i> View Course </a> </li>
   <div class="divider"></div>
   <ul class=" collapsible expandable">
-    <% Course.all.order(course_number: 'ASC').each do |course| %>
+    <% Course.all.order(created_at: 'ASC').each do |course| %>
       <li class="">
         <div class="collapsible-header black-text">
           <b><%= course.name %>  </b> <span style="border-radius:1000px;" class="badge icon white-text"><small><%= course.lessons.count %> Lessons</small></span>

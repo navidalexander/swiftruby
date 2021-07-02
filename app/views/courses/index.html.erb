@@ -45,19 +45,16 @@
               <img src="https://media-exp1.licdn.com/dms/image/C5603AQFFdoPK5Eaoyw/profile-displayphoto-shrink_100_100/0/1613946283186?e=1626912000&v=beta&t=Pn-07H5gK_SdaTUwBuipJ3TXcItzyimScOygwzBRHjk" alt="Contact Person">
               by Navid Alexander
             </div>
-            <div class="footer-text-cta" style="margin-top:20px;">
-              <p><button class="course-button-1 z-depth-2" style="border-radius:1000px;"><a href="/courses" class="manual-optin-trigger">Register</a></button></p>
-              <br>
-            </div>
+          
           </div>
         </div>
         <div class="col s12 m12 l7">
           <div class="card-panel z-depth-2" style="margin-top:50px;">
-             <% Course.all.order(course_number: 'ASC').each do |course| %>
+             <% Course.all.where(id: 1).order(created_at: 'ASC').each do |course| %>
             <ul class="collection with-header" style="border:none;">
               <li class="collection-header collection-item avatar">
                 <br>
-                <i class="material-icons circle icon"><%= course.course_icon %></i>
+                <i class="material-icons circle icon"><%= course.course_image %></i>
                 <span class="title" style="font-weight:900; font-size: 20px;"><b><%= course.name %></b></span>
                 <p style="font-weight:400; font-size: 14px;"><%= course.lessons.count %> Lessons</p>
                 <a href="#!" class="secondary-content"></a>

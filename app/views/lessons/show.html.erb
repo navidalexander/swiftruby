@@ -13,7 +13,7 @@
         <br>
         <div class="card-panel white" style="margin-top:0px; border:none; box-shadow:none;">
           <i class="material-icons red-text right" style="margin-top:20px;">favorite</i>
-          <h4><small><b>Lesson <%= @lesson.course.course_number %>.<%= @lesson.lesson_number %></b>: 
+          <h4><small><b>Lesson <%= @lesson.course.id %>.<%= @lesson.lesson_number %></b>: 
               <%= @lesson.name %></small></h4>
           <blockquote style="font-size:20px;"><%= @lesson.description %></blockquote>
           <%= link_to 'Delete', [@lesson.course, @lesson],
@@ -27,7 +27,7 @@
   <!-- Modal Structure -->
   <div id="modal1" class="modal modal-fixed-footer">
     <div class="modal-content white" style="padding:0px; margin:0px;">
-      <% Course.all.order(course_number: 'ASC').each do |course| %>
+      <% Course.all.order(created_at: 'ASC').each do |course| %>
         <ul class="collection with-header" style="margin-top:0px; padding-top:0px; border:none;">
           <li class="collection-header collection-item" style="padding: 20px 20px;">
             <span class="title" style="font-size:20px;"><b><%= course.name %></b></span>
